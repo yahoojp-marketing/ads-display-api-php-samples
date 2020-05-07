@@ -18,7 +18,7 @@ v1
 conf/
   - api_config.ini      : 各種IDを記述する設定ファイルです。
 
-src/jp/co/yahoo/adssearchapi
+src/jp/co/yahoo/adsdisplayapi
   - sample/             : レポートのサンプルです。
 
 --------------------------------
