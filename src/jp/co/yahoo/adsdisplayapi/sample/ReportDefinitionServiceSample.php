@@ -14,14 +14,13 @@ use OpenAPI\Client\Api\ReportDefinitionServiceApi;
 use OpenAPI\Client\Model\{
     ReportDefinition,
     ReportDefinitionServiceOperation,
-    ReportDefinitionServiceDateRangeType,
-    ReportDefinitionServiceDownloadEncode,
-    ReportDefinitionServiceDownloadFormat,
     ReportDefinitionServiceSelector,
-    ReportDefinitionServiceJobStatus,
-    ReportDefinitionServiceDownloadSelector
+    ReportDefinitionServiceDownloadSelector,
+    ReportDefinitionServiceReportDateRangeType,
+    ReportDefinitionServiceReportDownloadEncode,
+    ReportDefinitionServiceReportDownloadFormat,
+    ReportDefinitionServiceReportJobStatus
 };
-
 
 /**
  * example ReportDefinitionService operation and Utility method collection.
@@ -69,9 +68,9 @@ class ReportDefinitionServiceSample
         $operand = new ReportDefinition();
         $operand->setReportName("REPORT_SAMPLE");
         $operand->setFields(self::REPORT_FIELDS);
-        $operand->setDateRangeType(ReportDefinitionServiceDateRangeType::YESTERDAY);
-        $operand->setDownloadEncode(ReportDefinitionServiceDownloadEncode::UTF_8);
-        $operand->setDownloadFormat(ReportDefinitionServiceDownloadFormat::CSV);
+        $operand->setReportDateRangeType(ReportDefinitionServiceReportDateRangeType::YESTERDAY);
+        $operand->setReportDownloadEncode(ReportDefinitionServiceReportDownloadEncode::UTF_8);
+        $operand->setReportDownloadFormat(ReportDefinitionServiceReportDownloadFormat::CSV);
 
         $report_definition_service_operation = new ReportDefinitionServiceOperation();
         $report_definition_service_operation->setAccountId(self::$apiConfig['accountId']);
@@ -93,12 +92,12 @@ class ReportDefinitionServiceSample
 
         try {
             $result = $apiInstance->reportDefinitionServiceGetPost($report_definition_service_selector);
-            $job_status = $result->getRval()->getValues()[0]->getReportDefinition()->getJobStatus();
+            $job_status = $result->getRval()->getValues()[0]->getReportDefinition()->getReportJobStatus();
 
-            while($job_status != ReportDefinitionServiceJobStatus::COMPLETED){
+            while ($job_status != ReportDefinitionServiceReportJobStatus::COMPLETED) {
                 sleep(1);
                 $result = $apiInstance->reportDefinitionServiceGetPost($report_definition_service_selector);
-                $job_status = $result->getRval()->getValues()[0]->getReportDefinition()->getJobStatus();
+                $job_status = $result->getRval()->getValues()[0]->getReportDefinition()->getReportJobStatus();
             }
 
         } catch (Exception $e) {
@@ -112,7 +111,7 @@ class ReportDefinitionServiceSample
 
         try {
             $data = $apiInstance->reportDefinitionServiceDownloadPost($report_definition_service_download_selector);
-            file_put_contents('./download/'.'sample.csv',$data);
+            file_put_contents('./download/' . 'sample.csv', $data);
         } catch (Exception $e) {
             echo 'Exception when calling ReportDefinitionServiceApi->reportDefinitionServiceDownloadPost: ', $e->getMessage(), PHP_EOL;
         }
