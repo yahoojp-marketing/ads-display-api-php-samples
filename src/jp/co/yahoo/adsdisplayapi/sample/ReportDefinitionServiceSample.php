@@ -69,7 +69,7 @@ class ReportDefinitionServiceSample
         $operand->setReportName("REPORT_SAMPLE");
         $operand->setFields(self::REPORT_FIELDS);
         $operand->setReportDateRangeType(ReportDefinitionServiceReportDateRangeType::YESTERDAY);
-        $operand->setReportDownloadEncode(ReportDefinitionServiceReportDownloadEncode::UTF_8);
+        $operand->setReportDownloadEncode(ReportDefinitionServiceReportDownloadEncode::UTF8);
         $operand->setReportDownloadFormat(ReportDefinitionServiceReportDownloadFormat::CSV);
 
         $report_definition_service_operation = new ReportDefinitionServiceOperation();
