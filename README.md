@@ -1,4 +1,4 @@
-# Yahoo!広告 ディスプレイ広告 API PHPサンプルプログラム
+# LINEヤフー広告 ディスプレイ広告 API PHPサンプルプログラム
 
 PHPサンプルプログラムです。
 
@@ -6,7 +6,7 @@ PHPサンプルプログラムです。
 
 ### [日本語](./README_JA.md)
 
-# Yahoo! Ads Display Ads API PHP sample code
+# LY Ads Display Ads API PHP sample code
 
 PHP sample code.
 
